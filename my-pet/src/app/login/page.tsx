@@ -1,56 +1,50 @@
+"use client"; // 👈 ADICIONADO: Marca este arquivo como um Client Component
+
 import React, { useState } from 'react';
 
-const LoginPage = () => {
-  // Estado para armazenar os valores dos inputs
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+const LoginPage: React.FC = () => {
+  // Estados para gerenciar o formulário
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  // Função para lidar com o envio do formulário
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    // Impede o recarregamento da página
-    event.preventDefault();
-
-    // Lógica de autenticação (aqui você chamaria sua API)
-    console.log('Dados do Login:');
-    console.log('Email:', email);
-    console.log('Senha:', password);
-
-    alert(`Tentativa de login com o email: ${email}`);
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Lógica de autenticação virá aqui (chamar API, verificar credenciais)
+    console.log('Tentativa de login:', { email, password });
+    alert('Tentativa de Login efetuada. (A lógica real virá depois!)');
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h2>Login</h2>
-        
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="seuemail@exemplo.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        
-        <div>
-          <label htmlFor="password">Senha</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="********"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        
-        <button type="submit">
+    <div className="login-page-container">
+      <h1 className="login-title">Acessar MyPetZone</h1>
+      <p className="login-subtitle">Bem-vindo de volta! Faça seu login abaixo.</p>
+      
+      {/* Formulário de Login */}
+      <form onSubmit={handleSubmit} className="login-form">
+        <input 
+          type="email" 
+          placeholder="E-mail" 
+          required 
+          className="login-input"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input 
+          type="password" 
+          placeholder="Senha" 
+          required 
+          className="login-input"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit" className="login-button btn-default">
           Entrar
         </button>
       </form>
+
+      <p className="signup-link">
+        Não tem conta? <a href="/signup">Cadastre-se</a>
+      </p>
     </div>
   );
 };
