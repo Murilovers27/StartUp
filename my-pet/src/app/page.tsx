@@ -20,9 +20,9 @@ export default function HomePage() {
   // Dados de exemplo (mantidos)
   const pets: PetData[] = [
     { name: "Rex", species: "Cachorro", age: "2 anos", location: "São Paulo, SP", photoUrl: "/rex.png" },
-    { name: "Mimi", species: "Gato", age: "1 ano", location: "Rio de Janeiro, RJ", photoUrl: "/mimi.png" },
-    { name: "Charlie", species: "Cachorro", age: "6 meses", location: "Curitiba, PR", photoUrl: "/.png" },
-    { name: "Luna", species: "Gato", age: "8 meses", location: "Belo Horizonte, MG", photoUrl: "/logo.png" },
+    { name: "Mimi", species: "Calango", age: "1 ano", location: "Rio de Janeiro, RJ", photoUrl: "/mimi.png" },
+    { name: "Charlie", species: "Cachorro", age: "6 meses", location: "Curitiba, PR", photoUrl: "/charlie.png" },
+    { name: "Pablito", species: "Pombo", age: "8 meses", location: "Belo Horizonte, MG", photoUrl: "/pablito.png" },
   ];
 
   return (
