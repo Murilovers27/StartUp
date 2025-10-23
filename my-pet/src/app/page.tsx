@@ -1,8 +1,12 @@
-import React from 'react';
-// Importe apenas os componentes que são exclusivos desta página
-import PetCard from '@/componentes/PetCard'; 
+"use client"; // Precisa de 'use client' se o PetCard usar hooks
 
-// 1. Definição da Interface (Boa prática em TS)
+import styles from './page.module.css'; 
+import PetCard from '../Componentes/Features/PetCard'; // Importa o PetCard
+
+// Importe os ícones que instalamos (Cadastro)
+import { FaMapMarkedAlt, FaStar, FaUser } from 'react-icons/fa';
+
+// Definição da Interface
 interface PetData {
   name: string;
   species: string;
@@ -11,41 +15,74 @@ interface PetData {
   photoUrl: string;
 }
 
-// 2. O Componente de Página Principal
-// O Next.js espera uma função que seja exportada como default
-const HomePageContent: React.FC = () => {
+// O Componente de Página Principal
+export default function HomePage() {
   // Dados de exemplo (No futuro, estes virão de uma API)
   const pets: PetData[] = [
-    { name: "Rex", species: "Cachorro", age: "2 anos", location: "São Paulo, SP", photoUrl: "/assets/rex.jpg" },
-    { name: "Mimi", species: "Gato", age: "1 ano", location: "Rio de Janeiro, RJ", photoUrl: "/assets/mimi.jpg" },
-    { name: "Charlie", species: "Pássaro", age: "6 meses", location: "Curitiba, PR", photoUrl: "/assets/charlie.jpg" },
-    { name: "Luna", species: "Coelho", age: "8 meses", location: "Belo Horizonte, MG", photoUrl: "/assets/luna.jpg" },
+    { name: "Rex", species: "Cachorro", age: "2 anos", location: "São Paulo, SP", photoUrl: "/logo.png" }, // Usei a logo como placeholder
+    { name: "Mimi", species: "Gato", age: "1 ano", location: "Rio de Janeiro, RJ", photoUrl: "/logo.png" },
+    { name: "Charlie", species: "Cachorro", age: "6 meses", location: "Curitiba, PR", photoUrl: "/logo.png" },
+    { name: "Luna", species: "Gato", age: "8 meses", location: "Belo Horizonte, MG", photoUrl: "/logo.png" },
   ];
 
   return (
-    // Coloque aqui todo o conteúdo principal da sua landing page do Figma
-    <div className="homepage-container">
+    <div className={styles.pageContainer}>
       
-      {/* 1. Seção Principal (Hero Section) - Baseada no seu design */}
-      <section className="hero-section" style={{ padding: '60px 20px', textAlign: 'center' }}>
-        <h1>Adote um Amigo, Mude uma Vida.</h1>
-        <p>A maior plataforma para encontrar seu pet ideal.</p>
-        {/* Inclua seu campo de busca ou botão de call-to-action */}
+      {/* --- 1. Nova Seção Hero --- */}
+      <section className={styles.heroSection}>
+        <div className={styles.heroContent}>
+          <h1 className={styles.heroTitle}>MyPetZone</h1>
+          <p className={styles.heroSubtitle}>
+            Tudo o que seu melhor amigo precisa em um só lugar.
+          </p>
+        </div>
       </section>
 
-      {/* 2. Seção de Listagem de Pets (Os Cards) */}
-      <section className="pet-listings-section">
-        <h2 style={{ textAlign: 'center', marginBottom: '40px' }}>Destaques da Semana</h2>
+      {/* --- 2. Novo Banner de 3 Cards --- */}
+      <section className={styles.featureBanner}>
+        <div className={styles.bannerGrid}>
+          {/* Card 1: PetMap */}
+          <div className={styles.bannerCard}>
+            <div className={styles.bannerIcon}><FaMapMarkedAlt /></div>
+            <div>
+              <h3>Pet map</h3>
+              <p>Encontre o melhor lugar para seu pet</p>
+            </div>
+          </div>
+          {/* Card 2: Pet Star */}
+          <div className={styles.bannerCard}>
+            <div className={styles.bannerIcon}><FaStar /></div>
+            <div>
+              <h3>Pet Star</h3>
+              <p>Se torne um pet star e obtenha benefícios</p>
+            </div>
+          </div>
+          {/* Card 3: Pet Zone */}
+          <div className={styles.bannerCard}>
+            <div className={styles.bannerIcon}><FaUser /></div>
+            <div>
+              <h3>Pet zone</h3>
+              <p>Consulte as informações da sua conta</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- 3. Seção "Sobre" --- */}
+      <section className={styles.aboutSection}>
+        <div className={styles.aboutCard}>
+          <h2>Sobre</h2>
+          <p>
+            Cansado de usar vários aplicativos para gerenciar a vida do seu pet? O MyPetZone nasceu para resolver exatamente essa dificuldade, atuando como uma plataforma digital que centraliza, organiza e simplifica o acesso a serviços e informações para tutores de animais de estimação. Com nossa solução, você pode explorar um mapa interativo para descobrir novos estabelecimentos pet friendly.
+          </p>
+        </div>
+      </section>
+
+      {/* --- 4. Seção "Destaques da Semana" (Mantida) --- */}
+      <section className={styles.petListingsSection}>
+        <h2 className={styles.sectionTitle}>Destaques da Semana</h2>
         
-        {/* Grid para os Cards - Estilo inline apenas para demonstração de layout */}
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-          gap: '20px', 
-          padding: '20px 5%' 
-        }}>
-          
-          {/* Mapeamento dos Cards */}
+        <div className={styles.petGrid}>
           {pets.map((pet, index) => (
             <PetCard 
               key={index}
@@ -59,11 +96,6 @@ const HomePageContent: React.FC = () => {
         </div>
       </section>
       
-      {/* Outras Seções (Testemunhos, Como Funciona, etc.) */}
-      
     </div>
   );
 };
-
-// O componente deve ser o export default
-export default HomePageContent;

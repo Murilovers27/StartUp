@@ -1,49 +1,25 @@
-import React from 'react';
-import './index.css'; // Importa os estilos
+// 1. Importe o CSS Module
+// (Certifique-se que o nome do arquivo importado bate com o nome real)
+import styles from './footer.module.css';
 
-function Footer() {
+// (Opcional) Se você for usar ícones, ex:
+// import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+
+// O export default é o padrão para componentes de página/layout
+export default function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer-content-container">
-        
-        {/* Coluna 1: Logo e Descrição (se houver no Figma) */}
-        <div className="footer-section brand-info">
-          <h4 className="footer-logo">MyPetZone</h4>
-          <p className="footer-description">
-            Encontrando lares amorosos para todos os pets.
-          </p>
-        </div>
+    // 2. Aplique a classe principal
+    <footer className={styles.footer}>
+      
+      {/* (Opcional) Seção de Redes Sociais
+      <div className={styles.socialLinks}>
+        <a href="#" className={styles.socialIcon}><FaFacebook /></a>
+        <a href="#" className={styles.socialIcon}><FaInstagram /></a>
+        <a href="#" className={styles.socialIcon}><FaTwitter /></a>
+      </div> 
+      */}
 
-        {/* Coluna 2: Links de Navegação */}
-        <div className="footer-section navigation-links">
-          <h4>Navegação</h4>
-          <ul>
-            <li><a href="/home">Início</a></li>
-            <li><a href="/adotar">Adotar</a></li>
-            <li><a href="/sobre">Sobre Nós</a></li>
-            <li><a href="/contato">Contato</a></li>
-          </ul>
-        </div>
-
-        {/* Coluna 3: Redes Sociais / Contato */}
-        <div className="footer-section social-media">
-          <h4>Siga-nos</h4>
-          {/* Substitua os SVGs ou ícones por seus próprios ícones exportados do Figma */}
-          <div className="social-icons">
-            <a href="#"><span role="img" aria-label="Instagram">📸</span></a>
-            <a href="#"><span role="img" aria-label="Facebook">📘</span></a>
-            <a href="#"><span role="img" aria-label="Twitter">🐦</span></a>
-          </div>
-        </div>
-
-      </div>
-
-      {/* Seção de Copyright no final */}
-      <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} MyPetZone. Todos os direitos reservados.</p>
-      </div>
+      <p>© {new Date().getFullYear()} myPetZone. Todos os direitos reservados.</p>
     </footer>
   );
 }
-
-export default Footer;

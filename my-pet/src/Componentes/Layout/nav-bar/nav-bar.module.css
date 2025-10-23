@@ -1,79 +1,101 @@
-header {
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 4%;
-        background-color: #6D1A1C;
-        box-shadow: 0px 15px 16px -7px rgba(0, 0, 0, 0.1);
+/* src/Componentes/Layout/nav-bar/nav-bar.module.css */
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 5%;
+  background-color: var(--card-background);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: 'Poppins', sans-serif;
+}
 
-        .logo {
-            img {
-                width: 75px;
-                height: 100%;
-                object-fit: cover;
-            }
-        }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
 
-        .nav-items {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-            list-style: none;
+.logo:hover {
+  text-decoration: none;
+}
 
-            &.open {
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                background-color: #13131d;
-                padding: 20px;
-            }
-        }
+.navItems {
+  display: flex;
+  gap: 5.0rem;
+}
 
-        .btn-default {
-            border-radius: 24px;
-            padding: 11px 22px;
-            cursor: pointer;
-            background-color: #FFEA00;
-            border: none;
-            color: #6D1A1C;
-            font-family: inherit;
-            font-weight: 500;
-            transition: all 0.3s;
-            font-size: 25px;
+.loginButton {
+  background-color: var(--primary-color);
+  color: #FFFFFF;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
 
-            &:hover {
-                background-color: #FFF7EA;
-            }
-        }
+.loginButton:hover {
+  background-color: #5a1782; /* Tom mais escuro */
+  transform: scale(1.05);
+  text-decoration: none;
+}
 
-        .btn-mobile {
-            display: none;
-            background-color: transparent;
-            font-size: 20px;
-            color: #f7f5ff;
-            border: none;
-            cursor: pointer;
-        }
-        
-        @media screen and (max-width: 768px) {
-            .btn-mobile {
-                display: block;
-            }
+/* --- Estilos para o Menu Mobile --- */
+.hamburger {
+  display: none; /* Escondido em telas grandes */
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
 
-            .nav-items {
-                display: none;
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background-color: var(--text-dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
 
-                &.open {
-                    display: flex;
-                }
-            }
+/* Media Query para telas pequenas (ex: 768px) */
+@media (max-width: 768px) {
+  .navItems {
+    display: none; /* Esconde os links */
+    flex-direction: column;
+    position: absolute;
+    top: 70px; /* Altura da navbar */
+    left: 0;
+    width: 100%;
+    background-color: var(--card-background);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+    align-items: center;
+    gap: 1.5rem;
+  }
 
-            .btn-default {
-                display: none;
-            }
-        }
-    }
+  .navItems.open {
+    display: flex; /* Mostra os links quando o menu está aberto */
+  }
+
+  .hamburger {
+    display: flex; /* Mostra o botão hamburger */
+  }
+
+  /* (Opcional) Animação do hamburger para "X" */
+  .hamburger.open div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .hamburger.open div:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.open div:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
 }
