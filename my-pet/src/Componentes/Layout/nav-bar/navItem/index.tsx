@@ -1,5 +1,5 @@
 import Link from "next/link";
-import "./index.css";
+import "./nav-item.module.css";
 
 export interface NavItemInterface {
     url: string;
