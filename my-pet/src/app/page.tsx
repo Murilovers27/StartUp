@@ -1,12 +1,12 @@
-"use client"; // Precisa de 'use client' se o PetCard usar hooks
+"use client"; 
 
+// 1. Imports necessários
+import Link from 'next/link'; // Essencial para os cards clicáveis
 import styles from './page.module.css'; 
-import PetCard from '../Componentes/Features/PetCard'; // Importa o PetCard
+import PetCard from '../Componentes/Features/PetCard'; 
+import { FaMapMarkedAlt, FaStar, FaUser } from 'react-icons/fa'; // Ícones para o banner
 
-// Importe os ícones que instalamos (Cadastro)
-import { FaMapMarkedAlt, FaStar, FaUser } from 'react-icons/fa';
-
-// Definição da Interface
+// Definição da Interface (mantida)
 interface PetData {
   name: string;
   species: string;
@@ -15,13 +15,13 @@ interface PetData {
   photoUrl: string;
 }
 
-// O Componente de Página Principal
+// O Componente da Homepage
 export default function HomePage() {
-  // Dados de exemplo (No futuro, estes virão de uma API)
+  // Dados de exemplo (mantidos)
   const pets: PetData[] = [
-    { name: "Rex", species: "Cachorro", age: "2 anos", location: "São Paulo, SP", photoUrl: "/logo.png" }, // Usei a logo como placeholder
-    { name: "Mimi", species: "Gato", age: "1 ano", location: "Rio de Janeiro, RJ", photoUrl: "/logo.png" },
-    { name: "Charlie", species: "Cachorro", age: "6 meses", location: "Curitiba, PR", photoUrl: "/logo.png" },
+    { name: "Rex", species: "Cachorro", age: "2 anos", location: "São Paulo, SP", photoUrl: "/rex.png" },
+    { name: "Mimi", species: "Gato", age: "1 ano", location: "Rio de Janeiro, RJ", photoUrl: "/mimi.png" },
+    { name: "Charlie", species: "Cachorro", age: "6 meses", location: "Curitiba, PR", photoUrl: "/.png" },
     { name: "Luna", species: "Gato", age: "8 meses", location: "Belo Horizonte, MG", photoUrl: "/logo.png" },
   ];
 
@@ -38,33 +38,37 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* --- 2. Novo Banner de 3 Cards --- */}
+      {/* --- 2. Banner de 3 Cards CLICÁVEIS --- */}
       <section className={styles.featureBanner}>
         <div className={styles.bannerGrid}>
-          {/* Card 1: PetMap */}
-          <div className={styles.bannerCard}>
+          
+          {/* Card 1: PetMap (AGORA É UM LINK) */}
+          <Link href="/pet-map" className={styles.bannerCardLink}>
             <div className={styles.bannerIcon}><FaMapMarkedAlt /></div>
-            <div>
+            <div className={styles.bannerCardContent}> {/* Div extra para alinhar texto */}
               <h3>Pet map</h3>
               <p>Encontre o melhor lugar para seu pet</p>
             </div>
-          </div>
-          {/* Card 2: Pet Star */}
-          <div className={styles.bannerCard}>
+          </Link>
+          
+          {/* Card 2: Pet Star (AGORA É UM LINK - Ajuste o href se necessário) */}
+          <Link href="/planos" className={styles.bannerCardLink}> {/* Ex: Levando para /planos */}
             <div className={styles.bannerIcon}><FaStar /></div>
-            <div>
+            <div className={styles.bannerCardContent}>
               <h3>Pet Star</h3>
               <p>Se torne um pet star e obtenha benefícios</p>
             </div>
-          </div>
-          {/* Card 3: Pet Zone */}
-          <div className={styles.bannerCard}>
+          </Link>
+          
+          {/* Card 3: Pet Zone (AGORA É UM LINK - Ajuste o href se necessário) */}
+          <Link href="/login/pagina-usuario" className={styles.bannerCardLink}> {/* Ex: Levando para /login */}
             <div className={styles.bannerIcon}><FaUser /></div>
-            <div>
+            <div className={styles.bannerCardContent}>
               <h3>Pet zone</h3>
               <p>Consulte as informações da sua conta</p>
             </div>
-          </div>
+          </Link>
+
         </div>
       </section>
 
@@ -75,6 +79,7 @@ export default function HomePage() {
           <p>
             Cansado de usar vários aplicativos para gerenciar a vida do seu pet? O MyPetZone nasceu para resolver exatamente essa dificuldade, atuando como uma plataforma digital que centraliza, organiza e simplifica o acesso a serviços e informações para tutores de animais de estimação. Com nossa solução, você pode explorar um mapa interativo para descobrir novos estabelecimentos pet friendly.
           </p>
+          {/* Adicione mais texto se desejar */}
         </div>
       </section>
 

@@ -2,13 +2,13 @@
 
 /* 1. Variáveis de Cor (Tema MyPetZone) */
 :root {
-  --primary-color: #6A1B9A;     /* Roxo principal */
+  --primary-color: #6D1A1C;     /* Roxo principal */
   --secondary-color: #F9A825;   /* Laranja/Amarelo (destaque) */
-  --background-light: #F8F9FA;  /* Fundo principal (quase branco) */
+  --background-light: #FFF7E9;  /* Fundo principal (quase branco) */
   --card-background: #FFFFFF;     /* Fundo dos cards */
   --text-dark: #212529;          /* Texto principal */
   --text-light: #6C757D;         /* Texto secundário */
-  --footer-background: #2E1045;   /* Roxo escuro para o footer */
+  --footer-background: #6D1A1C;   /* Roxo escuro para o footer */
   --footer-text: #E0E0E0;
 }
 

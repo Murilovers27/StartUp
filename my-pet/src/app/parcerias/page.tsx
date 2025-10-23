@@ -1,94 +1,107 @@
-import React from 'react';
+"use client"; // Pode ser server component se os dados forem estáticos
 
-// Componente simples de Card de Plano (também sem CSS inline)
-interface PlanCardProps {
-    title: string;
-    subtitle: string;
-    description: string;
-    features: string[];
-    price: string;
-    isFeatured?: boolean; 
+import Link from 'next/link';
+import Image from 'next/image'; // Usar Image do Next.js para otimização
+import styles from './page.module.css';
+
+// 1. Interface para definir a estrutura de um parceiro
+interface Partner {
+  id: string;
+  name: string;
+  logoUrl: string; // Caminho para o logo em /public/
+  description: string;
+  websiteUrl: string; // Link para o site do parceiro
 }
 
-const PlanCard: React.FC<PlanCardProps> = ({ title, subtitle, description, features, price, isFeatured = false }) => {
-    // As classes 'plan-card--featured' serão usadas para aplicar os estilos premium via CSS
-    const cardClassName = `plan-card ${isFeatured ? 'plan-card--featured' : ''}`;
-    const buttonClassName = `plan-button ${isFeatured ? 'plan-button--featured' : ''}`;
+export default function ParceriasPage() {
 
-    return (
-        <div className={cardClassName}>
-            <h2 className="plan-title">{title}</h2>
-            <p className="plan-subtitle">{subtitle}</p>
-            <h3 className="plan-price">{price}</h3>
+  // 2. Dados de exemplo dos parceiros
+  // !! IMPORTANTE !! 
+  //    - Substitua os 'logoUrl' pelos caminhos reais das imagens em /public/
+  //    - Substitua os 'websiteUrl' pelos links corretos
+  const partners: Partner[] = [
+    {
+      id: "p1",
+      name: "PetShop Amigo Fiel",
+      logoUrl: "/logo.png", // SUBSTITUA - Ex: /parceiros/amigo-fiel-logo.png
+      description: "Tudo para o seu pet, com banho, tosa e acessórios variados.",
+      websiteUrl: "#", // SUBSTITUA
+    },
+    {
+      id: "p2",
+      name: "Clínica Vet+ Saúde",
+      logoUrl: "/logo.png", // SUBSTITUA - Ex: /parceiros/vet-mais-logo.png
+      description: "Consultas, vacinas, exames e emergências 24h para seu animal.",
+      websiteUrl: "#", // SUBSTITUA
+    },
+    {
+      id: "p3",
+      name: "Adestra Cão Feliz",
+      logoUrl: "/logo.png", // SUBSTITUA - Ex: /parceiros/adestra-cao-logo.png
+      description: "Adestramento comportamental positivo para cães de todas as idades.",
+      websiteUrl: "#", // SUBSTITUA
+    },
+     {
+      id: "p4",
+      name: "Hotel Pet Relax",
+      logoUrl: "/logo.png", // SUBSTITUA
+      description: "Hospedagem segura e divertida para seu pet enquanto você viaja.",
+      websiteUrl: "#", // SUBSTITUA
+    },
+     {
+      id: "p5",
+      name: "Rações NutriPet",
+      logoUrl: "/logo.png", // SUBSTITUA
+      description: "Alimentação balanceada e de alta qualidade para cães e gatos.",
+      websiteUrl: "#", // SUBSTITUA
+    },
+     {
+      id: "p6",
+      name: "Pet Store Online",
+      logoUrl: "/logo.png", // SUBSTITUA
+      description: "Acessórios, brinquedos e produtos de higiene entregues em casa.",
+      websiteUrl: "#", // SUBSTITUA
+    },
+  ];
+
+  return (
+    <div className={styles.partnersPage}>
+      {/* --- Cabeçalho --- */}
+      <div className={styles.header}>
+        <h1 className={styles.title}>Nossos Parceiros</h1>
+        <p className={styles.subtitle}>
+          Conheça a rede de estabelecimentos e serviços que oferecem benefícios exclusivos para membros MyPetZone.
+        </p>
+      </div>
+
+      {/* --- Grade de Parceiros --- */}
+      <div className={styles.partnersGrid}>
+        {partners.map((partner) => (
+          <div key={partner.id} className={styles.partnerCard}>
+            <div className={styles.logoWrapper}>
+              <Image 
+                src={partner.logoUrl} 
+                alt={`Logo ${partner.name}`} 
+                width={80} // Defina uma largura base
+                height={80} // Defina uma altura base
+                style={{ objectFit: 'contain' }} // Garante que caiba
+              />
+            </div>
+            <h2 className={styles.partnerName}>{partner.name}</h2>
+            <p className={styles.partnerDescription}>{partner.description}</p>
             
-            <p className="plan-description">{description}</p>
-            
-            <ul className="plan-features-list">
-                {features.map((feature, index) => (
-                    <li key={index} className="plan-feature-item">
-                        <span role="img" aria-label="check">✔️</span> {feature}
-                    </li>
-                ))}
-            </ul>
-
-            <button className={buttonClassName} onClick={() => console.log(`Inscrição no plano ${title}!`)}>
-                Escolher Plano
-            </button>
-        </div>
-    );
-};
-
-
-// Dados de exemplo para a seção de logotipos
-const partnerLogos = [
-    { name: "PetShop Mais", logoUrl: "/assets/partners/petshop-mais.png" },
-    { name: "Clínica Veterinária Central", logoUrl: "/assets/partners/vet-central.png" },
-    { name: "ONG Amigo Fiel", logoUrl: "/assets/partners/ong-fiel.png" },
-    { name: "Rações Top", logoUrl: "/assets/partners/racoes-top.png" },
-];
-
-
-const ParceriasPage: React.FC = () => {
-    return (
-        <div className="parcerias-page-container">
-            
-            {/* Título Principal */}
-            <header className="parcerias-header">
-                <h1>Nossos Parceiros de Confiança</h1>
-                <p>Construindo um futuro melhor para os pets ao lado das melhores empresas e organizações.</p>
-            </header>
-            
-            {/* 1. Seção de Logotipos dos Parceiros */}
-            <section className="current-partners-section">
-                <h2 className="section-title">Empresas e Abrigos</h2>
-                
-                <div className="logos-grid">
-                    {partnerLogos.map((partner, index) => (
-                        <div key={index} className="partner-logo-item">
-                            {/* No seu CSS: aplique border, height, width e alinhamento à classe 'partner-logo-item' */}
-                            <span className="partner-name-placeholder">{partner.name}</span>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* 2. Seção de Chamada para Novos Parceiros (CTA) */}
-            <section className="join-us-cta-section">
-                <h2 className="cta-title">Quer Fazer Parte da PetZone?</h2>
-                <p className="cta-description">
-                    Se você é um abrigo, veterinário ou empresa de produtos para pets, junte-se à nossa missão!
-                </p>
-                
-                <button 
-                    onClick={() => console.log('Redirecionar para formulário de parceria')}
-                    className="cta-button"
-                >
-                    Saiba Como Ser Nosso Parceiro
-                </button>
-            </section>
-            
-        </div>
-    );
-};
-
-export default ParceriasPage;
+            {/* Link externo abre em nova aba */}
+            <Link 
+              href={partner.websiteUrl} 
+              target="_blank" // Abre em nova aba
+              rel="noopener noreferrer" // Segurança para links externos
+              className={styles.visitButton}
+            >
+              Visitar Site
+            </Link>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
