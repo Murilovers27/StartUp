@@ -21,7 +21,7 @@ export default function Navbar() {
         { url: "/pet-map", label: "PetMap" },
         { url: "/planos", label: "Planos" },
         { url: "/parcerias", label: "Parcerias" },
-        { url: "/Contatos", label : "Contatos"}
+        { url: "/contatos", label : "Contatos"}
     ];
 
     const [openMenu, setOpenMenu] = useState<boolean>(false);
